@@ -1,6 +1,7 @@
 const express = require("express");
 const connectMySQL = require("../driver");
 const router = express.Router();
+const validator = require("validator");
 
 router.post("/", async (req, res) => {
   let { shortUrl, longUrl, key } = req.body;
@@ -13,6 +14,11 @@ router.post("/", async (req, res) => {
 
   if (!longUrl) {
     res.send({ status: 0, reason: "No long url" });
+    return;
+  }
+
+  if (isURL(longUrl) === false) {
+    res.send({ status: 0, reason: "Not valud url" });
     return;
   }
 
