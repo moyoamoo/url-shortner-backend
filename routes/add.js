@@ -17,8 +17,8 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  if (isURL(longUrl) === false) {
-    res.send({ status: 0, reason: "Not valud url" });
+  if (validator.isURL(longUrl) === false) {
+    res.send({ status: 0, reason: "Not valid url" });
     return;
   }
 
